@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlirtyTchat.fr — Le tchat coquin, simple et 100% réel</title>
+  <meta name="description" content="FlirtyTchat.fr — Tchat 18+ coquin mais clean : rencontres, cam et discussions entre adultes. Email vérifié, pas de liens, pas d'argent, pas de faux profils." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-512.png" sizes="512x512" type="image/png">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo" aria-label="FlirtyTchat.fr">
+        <a href="index.html" class="logo-link">
+          <img src="logo-flirtytchat-mark.svg" alt="" width="28" height="28">
+          <img src="logo-flirtytchat-horizontal.svg" alt="FlirtyTchat.fr — Le tchat 18+ simple et réel" height="36">
+        </a>
+      </div>
+      <nav class="top-nav">
+        <a href="#salons">Salons</a>
+        <a href="#regles">Règles</a>
+        <a href="rooms.html">Entrer</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Bienvenue sur <strong>FlirtyTchat.fr</strong></h1>
+        <p class="tagline">Le tchat 18+ entre adultes — simple, rapide et 100% réel.<br/>
+        Rencontres, cam et discussions propres : <em>pas de faux profils, pas de liens, pas d'argent.</em></p>
+
+        <form class="quick-access" id="quickAccessForm">
+          <div class="form-group">
+            <label for="pseudo">Pseudo</label>
+            <input id="pseudo" name="pseudo" type="text" minlength="3" maxlength="20" placeholder="Choisis un pseudo" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Adresse mail</label>
+            <input id="email" name="email" type="email" placeholder="ton.email@example.com" required />
+          </div>
+          <div class="form-checks">
+            <label class="check">
+              <input type="checkbox" id="ageCheck" required />
+              <span>Je confirme avoir 18 ans ou plus.</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" id="rulesCheck" required />
+              <span>J’accepte les règles : pas de liens, pas d’argent, respect.</span>
+            </label>
+          </div>
+          <button type="submit" id="enterBtn">Recevoir mon code (OTP)</button>
+          <a class="alt-enter" href="rooms.html" style="text-align:center;text-decoration:none;margin-top:6px;grid-column:1/-1">ou <strong>entrer directement</strong> dans les salons (démo)</a>
+          <p class="helper">Un code à 6 chiffres sera envoyé à ton adresse mail (simulation). Entre-le ci-dessous.</p>
+
+          <!-- OTP Area -->
+          <div id="otpArea" style="display:none;grid-column:1/-1;border-top:1px solid #23232c;padding-top:10px">
+            <label for="otpCode" style="font-size:13px;color:#c2c3cc;margin-bottom:6px;display:block">Code reçu (6 chiffres)</label>
+            <input id="otpCode" type="text" inputmode="numeric" pattern="\d{6}" placeholder="______" maxlength="6" style="width:160px" />
+            <button type="button" id="verifyBtn" style="margin-left:8px">Valider</button>
+            <button type="button" id="resendBtn" style="margin-left:8px">Renvoyer</button>
+            <p id="otpInfo" class="helper" style="margin-top:8px"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="rules" id="regles" aria-labelledby="rulesTitle">
+      <div class="container">
+        <h2 id="rulesTitle">Rappels importants</h2>
+        <ul class="rules-list">
+          <li><strong>Site réservé aux adultes (18+)</strong> — entrée interdite aux mineurs.</li>
+          <li><strong>Pas de prostitution</strong> — pas d’échanges d’argent, pas de tarifs, pas de booking.</li>
+          <li><strong>Pas de liens externes</strong> — sécurité anti-arnaque (URLs, @, réseaux sociaux, OnlyFans, etc.).</li>
+          <li><strong>Photos et cam</strong> autorisées <em>entre adultes consentants</em>, de préférence en MP.</li>
+          <li><strong>Modération active</strong> — messages filtrés automatiquement en cas de mots interdits.</li>
+          <li><strong>Signalement et blocage</strong> disponibles sur chaque profil.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="salons" id="salons" aria-labelledby="salonsTitle">
+      <div class="container">
+        <h2 id="salonsTitle">Salons disponibles</h2>
+        <p class="note"><a href="rooms.html" style="font-weight:700">Voir tous les salons ↗</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container footer-inner">
+      <div class="footer-links">
+        <a href="mentions.html">Mentions légales</a>
+        <a href="cgu.html">CGU</a>
+        <a href="confidentialite.html">Confidentialité (RGPD)</a>
+        <a href="abus.html">Signaler un abus</a>
+        <a href="mailto:support@flirtytchat.fr">Contact</a>
+      </div>
+      <p class="copyright">© 2025 FlirtyTchat.fr — Le tchat coquin sans faux profils. Hébergement en France — Interdit aux mineurs.</p>
+    </div>
+  </footer>
+
+  <script src="otp.js"></script>
+</body>
+</html>
