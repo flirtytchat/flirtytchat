@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlirtyTchat.fr — Le tchat coquin, simple et 100% réel</title>
+  <meta name="description" content="FlirtyTchat.fr — Tchat 18+ coquin mais clean : rencontres, cam et discussions entre adultes. Email vérifié, pas de liens, pas d'argent, pas de faux profils." />
+  <link rel="preconnect" href="/" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo" aria-label="FlirtyTchat.fr">
+        <span class="logo-heart" aria-hidden="true">❤</span>
+        <span class="logo-text">Flirty<span>Tchat</span><sup>.fr</sup></span>
+      </div>
+      <nav class="top-nav">
+        <a href="#salons">Salons</a>
+        <a href="#regles">Règles</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Bienvenue sur <strong>FlirtyTchat.fr</strong></h1>
+        <p class="tagline">Le tchat 18+ entre adultes — simple, rapide et 100% réel.<br/>
+        Rencontres, cam et discussions propres : <em>pas de faux profils, pas de liens, pas d'argent.</em></p>
+
+        <form class="quick-access" id="quickAccessForm" onsubmit="return false;">
+          <div class="form-group">
+            <label for="pseudo">Pseudo</label>
+            <input id="pseudo" name="pseudo" type="text" minlength="3" maxlength="20" placeholder="Choisis un pseudo" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Adresse mail</label>
+            <input id="email" name="email" type="email" placeholder="ton.email@example.com" required />
+          </div>
+          <div class="form-checks">
+            <label class="check">
+              <input type="checkbox" id="ageCheck" required />
+              <span>Je confirme avoir 18 ans ou plus.</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" id="rulesCheck" required />
+              <span>J’accepte les règles : pas de liens, pas d’argent, respect.</span>
+            </label>
+          </div>
+          <button type="submit" id="enterBtn">Entrer dans le tchat</button>
+          <p class="helper">Tu recevras un code à 6 chiffres par mail pour confirmer ton compte.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="rules" id="regles" aria-labelledby="rulesTitle">
+      <div class="container">
+        <h2 id="rulesTitle">Rappels importants</h2>
+        <ul class="rules-list">
+          <li><strong>Site réservé aux adultes (18+)</strong> — entrée interdite aux mineurs.</li>
+          <li><strong>Pas de prostitution</strong> — pas d’échanges d’argent, pas de tarifs, pas de booking.</li>
+          <li><strong>Pas de liens externes</strong> — sécurité anti-arnaque (URLs, @, réseaux sociaux, OnlyFans, etc.).</li>
+          <li><strong>Photos et cam</strong> autorisées <em>entre adultes consentants</em>, de préférence en MP.</li>
+          <li><strong>Modération active</strong> — messages filtrés automatiquement en cas de mots interdits.</li>
+          <li><strong>Signalement et blocage</strong> disponibles sur chaque profil.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="salons" id="salons" aria-labelledby="salonsTitle">
+      <div class="container">
+        <h2 id="salonsTitle">Salons disponibles</h2>
+        <div class="salon-columns">
+          <div class="salon-col">
+            <h3>Par région</h3>
+            <ul class="grid">
+              <li>Île-de-France</li>
+              <li>Auvergne‑Rhône‑Alpes</li>
+              <li>Provence‑Alpes‑Côte d’Azur</li>
+              <li>Occitanie</li>
+              <li>Nouvelle‑Aquitaine</li>
+              <li>Grand Est</li>
+              <li>Hauts‑de‑France</li>
+              <li>Normandie</li>
+              <li>Bretagne</li>
+              <li>Bourgogne‑Franche‑Comté</li>
+              <li>Centre‑Val de Loire</li>
+              <li>Pays de la Loire</li>
+              <li>Corse</li>
+              <li>Outre‑mer</li>
+            </ul>
+          </div>
+          <div class="salon-col">
+            <h3>Par thème</h3>
+            <ul class="grid">
+              <li>Rencontre coquine soft</li>
+              <li>Cam 18+</li>
+              <li>Détente &amp; discussion</li>
+              <li>Rencontre réelle (IRL)</li>
+              <li>Nouveaux arrivants</li>
+              <li>Nuit chaude 🌙</li>
+              <li>Jeu de questions</li>
+              <li>Auto/Moto</li>
+            </ul>
+          </div>
+        </div>
+        <p class="note">Accès ultra simple : choisis un salon et commence à discuter. Les messages sont en temps réel.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container footer-inner">
+      <div class="footer-links">
+        <a href="#" onclick="openModal('mentions')">Mentions légales</a>
+        <a href="#" onclick="openModal('cgu')">CGU</a>
+        <a href="#" onclick="openModal('privacy')">Confidentialité (RGPD)</a>
+        <a href="mailto:support@flirtytchat.fr">Contact</a>
+        <a href="#" onclick="openModal('abuse')">Signaler un abus</a>
+      </div>
+      <p class="copyright">© 2025 FlirtyTchat.fr — Le tchat coquin sans faux profils. Hébergement en France — Interdit aux mineurs.</p>
+    </div>
+  </footer>
+
+  <!-- Simple modals content -->
+  <div class="modal" id="modal-mentions" aria-hidden="true" role="dialog" aria-labelledby="modalTitleMentions">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('mentions')" aria-label="Fermer">×</button>
+      <h3 id="modalTitleMentions">Mentions légales (exemple)</h3>
+      <p>Éditeur : FlirtyTchat.fr — (renseigner raison sociale, adresse).<br/>Hébergeur : (à compléter).<br/>Contact : support@flirtytchat.fr</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-cgu" aria-hidden="true" role="dialog" aria-labelledby="modalTitleCGU">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('cgu')" aria-label="Fermer">×</button>
+      <h3 id="modalTitleCGU">CGU (résumé)</h3>
+      <ul>
+        <li>Site 18+ uniquement. Pas de mineurs.</li>
+        <li>Pas de prostitution, pas d’échanges d’argent, pas de liens externes.</li>
+        <li>Photos/Cam autorisées entre adultes consentants (MP recommandé).</li>
+        <li>3 avertissements → ban automatique. Les contenus illégaux sont supprimés et signalés.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-privacy" aria-hidden="true" role="dialog" aria-labelledby="modalTitlePrivacy">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('privacy')" aria-label="Fermer">×</button>
+      <h3 id="modalTitlePrivacy">Confidentialité (RGPD)</h3>
+      <p>Données collectées : email, pseudo, IP, région, messages (durée limitée).<br/>
+      Base légale : exécution du service + intérêt légitime (anti‑fraude).<br/>
+      Droits : accès / rectification / suppression via support@flirtytchat.fr.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-abuse" aria-hidden="true" role="dialog" aria-labelledby="modalTitleAbuse">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('abuse')" aria-label="Fermer">×</button>
+      <h3 id="modalTitleAbuse">Signaler un abus</h3>
+      <p>En cas d’abus, harcèlement ou contenu interdit, écris à <a href="mailto:abuse@flirtytchat.fr">abuse@flirtytchat.fr</a> en joignant une capture (si possible).</p>
+    </div>
+  </div>
+
+  <script>
+    // Demo handlers (à remplacer par vraies intégrations API plus tard)
+    const form = document.getElementById('quickAccessForm');
+    const email = document.getElementById('email');
+    const pseudo = document.getElementById('pseudo');
+    const enterBtn = document.getElementById('enterBtn');
+
+    form.addEventListener('submit', () => {
+      if (!form.checkValidity()) return;
+      alert('👍 Étape suivante : envoi d’un code OTP à ' + email.value + ' (simulation).');
+    });
+
+    function openModal(key) {
+      const el = document.getElementById('modal-' + key);
+      if (el) { el.setAttribute('aria-hidden', 'false'); el.classList.add('open'); }
+    }
+    function closeModal(key) {
+      const el = document.getElementById('modal-' + key);
+      if (el) { el.setAttribute('aria-hidden', 'true'); el.classList.remove('open'); }
+    }
+    document.querySelectorAll('.modal').forEach(m => {
+      m.addEventListener('click', (e) => { if (e.target.classList.contains('modal')) m.classList.remove('open'); });
+    });
+  </script>
+</body>
+</html>
