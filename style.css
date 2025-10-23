@@ -8,7 +8,7 @@ a{color:#ff6ea8;text-decoration:none}a:hover{text-decoration:underline}
 .logo-text{letter-spacing:.3px}
 .logo-text span{color:#ff6ea8}
 .top-nav a{margin-left:16px;font-weight:600;color:#cfd0d8}
-.top-nav a:hover{color:#fff}
+.top-nav a:hover{color:#ff6ea8;text-decoration:underline}
 .hero{padding:56px 0;background:linear-gradient(180deg,#15151b,#0f0f12)}
 .hero h1{font-size:32px;margin:0 0 8px}
 .hero .tagline{color:#cfd0d8;margin:0 0 24px;font-size:16px;line-height:1.5}
@@ -47,3 +47,7 @@ copyright{color:#8d8f9b}
   .salon-columns{grid-template-columns:1fr}
   .hero h1{font-size:26px}
 }
+/* --- FlirtyTchat brand tweaks --- */
+.logo a{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.logo img{display:block}
+.top-nav a{transition:color .15s ease, text-decoration-color .15s ease}

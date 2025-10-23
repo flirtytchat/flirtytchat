@@ -5,20 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FlirtyTchat.fr — Le tchat coquin, simple et 100% réel</title>
   <meta name="description" content="FlirtyTchat.fr — Tchat 18+ coquin mais clean : rencontres, cam et discussions entre adultes. Email vérifié, pas de liens, pas d'argent, pas de faux profils." />
-  <link rel="preconnect" href="/" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-512.png" sizes="512x512" type="image/png">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo" aria-label="FlirtyTchat.fr">
-        <span class="logo-heart" aria-hidden="true">❤</span>
-        <span class="logo-text">Flirty<span>Tchat</span><sup>.fr</sup></span>
+        <a href="index.html">
+          <img src="logo-flirtytchat-mark.svg" alt="" width="28" height="28">
+          <img src="logo-flirtytchat-horizontal.svg" alt="FlirtyTchat.fr — Le tchat 18+ simple et réel" height="36">
+        </a>
       </div>
       <nav class="top-nav">
         <a href="#salons">Salons</a>
         <a href="#regles">Règles</a>
-        <a href="#contact">Contact</a>
+        <a href="salon.html">Entrer</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -49,8 +53,9 @@
               <span>J’accepte les règles : pas de liens, pas d’argent, respect.</span>
             </label>
           </div>
-          <button type="submit" id="enterBtn">Entrer dans le tchat</button>
-          <p class="helper">Tu recevras un code à 6 chiffres par mail pour confirmer ton compte.</p>
+          <button type="submit" id="enterBtn">Entrer dans le tchat (démo)</button>
+          <a class="alt-enter" href="salon.html" style="text-align:center;text-decoration:none;margin-top:6px;grid-column:1/-1">ou <strong>entrer directement</strong> dans un salon</a>
+          <p class="helper">Tu recevras un code à 6 chiffres par mail pour confirmer ton compte (bientôt).</p>
         </form>
       </div>
     </section>
@@ -106,7 +111,9 @@
             </ul>
           </div>
         </div>
-        <p class="note">Accès ultra simple : choisis un salon et commence à discuter. Les messages sont en temps réel.</p>
+        <p class="note">
+          <a href="salon.html" style="font-weight:700">Entrer maintenant dans un salon ↗</a>
+        </p>
       </div>
     </section>
   </main>
@@ -114,78 +121,24 @@
   <footer class="site-footer" id="contact">
     <div class="container footer-inner">
       <div class="footer-links">
-        <a href="#" onclick="openModal('mentions')">Mentions légales</a>
-        <a href="#" onclick="openModal('cgu')">CGU</a>
-        <a href="#" onclick="openModal('privacy')">Confidentialité (RGPD)</a>
+        <a href="mentions.html">Mentions légales</a>
+        <a href="cgu.html">CGU</a>
+        <a href="confidentialite.html">Confidentialité (RGPD)</a>
+        <a href="abus.html">Signaler un abus</a>
         <a href="mailto:support@flirtytchat.fr">Contact</a>
-        <a href="#" onclick="openModal('abuse')">Signaler un abus</a>
       </div>
       <p class="copyright">© 2025 FlirtyTchat.fr — Le tchat coquin sans faux profils. Hébergement en France — Interdit aux mineurs.</p>
     </div>
   </footer>
 
-  <!-- Simple modals content -->
-  <div class="modal" id="modal-mentions" aria-hidden="true" role="dialog" aria-labelledby="modalTitleMentions">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeModal('mentions')" aria-label="Fermer">×</button>
-      <h3 id="modalTitleMentions">Mentions légales (exemple)</h3>
-      <p>Éditeur : FlirtyTchat.fr — (renseigner raison sociale, adresse).<br/>Hébergeur : (à compléter).<br/>Contact : support@flirtytchat.fr</p>
-    </div>
-  </div>
-
-  <div class="modal" id="modal-cgu" aria-hidden="true" role="dialog" aria-labelledby="modalTitleCGU">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeModal('cgu')" aria-label="Fermer">×</button>
-      <h3 id="modalTitleCGU">CGU (résumé)</h3>
-      <ul>
-        <li>Site 18+ uniquement. Pas de mineurs.</li>
-        <li>Pas de prostitution, pas d’échanges d’argent, pas de liens externes.</li>
-        <li>Photos/Cam autorisées entre adultes consentants (MP recommandé).</li>
-        <li>3 avertissements → ban automatique. Les contenus illégaux sont supprimés et signalés.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="modal" id="modal-privacy" aria-hidden="true" role="dialog" aria-labelledby="modalTitlePrivacy">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeModal('privacy')" aria-label="Fermer">×</button>
-      <h3 id="modalTitlePrivacy">Confidentialité (RGPD)</h3>
-      <p>Données collectées : email, pseudo, IP, région, messages (durée limitée).<br/>
-      Base légale : exécution du service + intérêt légitime (anti‑fraude).<br/>
-      Droits : accès / rectification / suppression via support@flirtytchat.fr.</p>
-    </div>
-  </div>
-
-  <div class="modal" id="modal-abuse" aria-hidden="true" role="dialog" aria-labelledby="modalTitleAbuse">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeModal('abuse')" aria-label="Fermer">×</button>
-      <h3 id="modalTitleAbuse">Signaler un abus</h3>
-      <p>En cas d’abus, harcèlement ou contenu interdit, écris à <a href="mailto:abuse@flirtytchat.fr">abuse@flirtytchat.fr</a> en joignant une capture (si possible).</p>
-    </div>
-  </div>
-
   <script>
-    // Demo handlers (à remplacer par vraies intégrations API plus tard)
+    // Démo (à remplacer plus tard par vraie API OTP)
     const form = document.getElementById('quickAccessForm');
     const email = document.getElementById('email');
-    const pseudo = document.getElementById('pseudo');
-    const enterBtn = document.getElementById('enterBtn');
-
     form.addEventListener('submit', () => {
       if (!form.checkValidity()) return;
       alert('👍 Étape suivante : envoi d’un code OTP à ' + email.value + ' (simulation).');
-    });
-
-    function openModal(key) {
-      const el = document.getElementById('modal-' + key);
-      if (el) { el.setAttribute('aria-hidden', 'false'); el.classList.add('open'); }
-    }
-    function closeModal(key) {
-      const el = document.getElementById('modal-' + key);
-      if (el) { el.setAttribute('aria-hidden', 'true'); el.classList.remove('open'); }
-    }
-    document.querySelectorAll('.modal').forEach(m => {
-      m.addEventListener('click', (e) => { if (e.target.classList.contains('modal')) m.classList.remove('open'); });
+      window.location.href = 'salon.html';
     });
   </script>
 </body>
