@@ -1,29 +1,100 @@
-// Prototype local (sans serveur). Remplacera plus tard par Socket.IO
+// FlirtyTchat — Demo client-only chat logic
 (function(){
-  const form = document.getElementById('chatForm');
-  const input = document.getElementById('chatInput');
-  const list = document.getElementById('messages');
+  const $ = (sel)=>document.querySelector(sel);
+  const messages = $('#messages');
+  const input = $('#chatInput');
+  const form = $('#chatForm');
+  const typingState = $('#typingState');
+  const meTag = $('#meTag');
+  const usersList = $('#usersList');
+  const connectedCount = $('#connectedCount');
 
-  function addMessage(text, me=false){
-    if(!text.trim()) return;
-    // Filtres simples (anti-liens et argent) — même logique que sur la landing
-    const forbidden = /(http|www\.|\.fr|\.com|t\.me|wa\.me|instagram|snap|onlyfans|\b(?:€|eur|iban|paypal|tarif|prix|payer|cash)\b)/i;
-    if(forbidden.test(text)){
-      alert('Message bloqué (mot ou lien interdit).');
-      return;
+  // -------- Utilities
+  const nowTime = ()=> {
+    const d = new Date();
+    const h = String(d.getHours()).padStart(2,'0');
+    const m = String(d.getMinutes()).padStart(2,'0');
+    return h + ':' + m;
+  };
+
+  // Generate or read pseudo from localStorage
+  function getPseudo(){
+    const key = 'ft_pseudo';
+    let p = localStorage.getItem(key);
+    if(!p){
+      const n = Math.floor(100 + Math.random()*900);
+      p = 'Flirty_' + n;
+      localStorage.setItem(key, p);
     }
-    const el = document.createElement('div');
-    el.className = 'msg' + (me ? ' me' : '');
-    el.innerHTML = (me ? '<strong>Moi:</strong> ' : '<strong>Inconnu:</strong> ') + text;
-    list.appendChild(el);
-    list.scrollTop = list.scrollHeight;
+    return p;
   }
+  const pseudo = getPseudo();
+  meTag.textContent = `(tu es connecté en tant que ${pseudo})`;
 
-  form.addEventListener('submit', () => {
-    addMessage(input.value, true);
-    input.value = '';
+  // Seed "connected" count and list
+  function seedConnected(){
+    const base = 7 + Math.floor(Math.random()*6); // 7-12
+    connectedCount.textContent = base;
+    // Add "me" entry
+    const meDiv = document.createElement('div');
+    meDiv.className = 'user';
+    meDiv.textContent = `${pseudo} • 22 • 03`;
+    usersList.appendChild(meDiv);
+  }
+  seedConnected();
+
+  // Typing indicator (simulated other user)
+  let typingTimer;
+  input.addEventListener('input', ()=>{
+    typingState.textContent = `${pseudo} est en train d'écrire…`;
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(()=> typingState.textContent = '', 1200);
   });
 
-  // Démo: message robot après 1,5s
-  setTimeout(()=> addMessage('Bienvenue dans le salon ! Rappel: 18+, pas d\'argent, pas de liens.'), 1500);
+  // Stronger forbidden filters
+  const forbidden = new RegExp([
+    '(?:https?:\\/\\/|www\\.|\\.(?:fr|com|net|io)\\b)',
+    '(?:t\\.me|wa\\.me|instagram|snap|onlyfans|facebook|x\\.com|@)',
+    '(?:\\b(?:€|eur|iban|paypal|revolut|tarif|prix|payer|cash|virement|booking)\\b)',
+    '(?:escort|GFE|PSE|plan tarif|dodo contre)'
+  ].join('|'), 'i');
+
+  // Client-side rate limit: 1 message / 3s
+  let lastSent = 0;
+
+  function addMessage(author, text, mine=false){
+    const card = document.createElement('div');
+    card.className = 'msg' + (mine ? ' me' : '');
+    card.innerHTML = `<strong>${author}</strong> <span class="meta">• ${nowTime()}</span><br>${escapeHtml(text)}`;
+    messages.appendChild(card);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function escapeHtml(s){
+    return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  }
+
+  // Welcome line for me
+  setTimeout(()=> addMessage('Système', `Bienvenue ${pseudo} ! Rappel : 18+, pas de liens, pas d'argent.`), 800);
+
+  form.addEventListener('submit', ()=>{
+    const text = input.value.trim();
+    if(!text) return;
+    // rate limit
+    const now = Date.now();
+    if(now - lastSent < 3000){
+      alert('Trop rapide ! Merci d'attendre 3 secondes entre deux messages.');
+      return;
+    }
+    // filter
+    if(forbidden.test(text)){
+      alert('Message bloqué (mot/lien interdit). Règles : pas de liens, pas d'argent, pas de prostitution.');
+      return;
+    }
+    lastSent = now;
+    addMessage(pseudo, text, true);
+    input.value='';
+    // Simulate reply from Alice
+    setTimeout(()=> addMessage('Alice', '😉'), 1000);
+  });
 })();
