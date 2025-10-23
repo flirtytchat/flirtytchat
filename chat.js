@@ -1,4 +1,4 @@
-// FlirtyTchat — Demo client-only chat with multi-room support
+// FlirtyTchat — Demo client-only chat with multi-room + selector
 (function(){
   const $ = (sel)=>document.querySelector(sel);
   const messages = $('#messages');
@@ -8,6 +8,7 @@
   const usersList = $('#usersList');
   const connectedCount = $('#connectedCount');
   const roomTitle = $('#roomTitle');
+  const roomSelect = $('#roomSelect');
 
   // ---- Rooms mapping
   const ROOMS = {
@@ -25,9 +26,41 @@
     const u = new URL(location.href);
     return u.searchParams.get(name);
   }
+  function setParam(name, value){
+    const u = new URL(location.href);
+    u.searchParams.set(name, value);
+    location.href = u.toString();
+  }
+
+  // Populate selector
+  if(roomSelect){
+    // Grouped options
+    const groups = [
+      ['Régions', ['IDF','ARA','PACA','OCC','NAQ','GES','HDF','NOR','BRE','BFC','CVL','PDL','COR','OM']],
+      ['Thèmes',  ['COQ','CAM','DET','IRL','NEW','NIGHT']]
+    ];
+    groups.forEach(([label, codes])=>{
+      const optgroup = document.createElement('optgroup');
+      optgroup.label = label;
+      codes.forEach(code=>{
+        const opt = document.createElement('option');
+        opt.value = code;
+        opt.textContent = ROOMS[code];
+        optgroup.appendChild(opt);
+      });
+      roomSelect.appendChild(optgroup);
+    });
+  }
+
   const roomCode = (getParam('room')||'IDF').toUpperCase();
+  if(roomSelect){ roomSelect.value = roomCode; }
   const roomName = ROOMS[roomCode] || 'Salon public';
   roomTitle.textContent = 'Salon — ' + roomName;
+
+  // Handle change
+  if(roomSelect){
+    roomSelect.addEventListener('change', ()=> setParam('room', roomSelect.value));
+  }
 
   // -------- Utilities
   const nowTime = ()=> {
@@ -37,7 +70,7 @@
     return h + ':' + m;
   };
 
-  // Generate or read pseudo from localStorage (scoped per origin)
+  // Generate or read pseudo from localStorage
   function getPseudo(){
     const key = 'ft_pseudo';
     let p = localStorage.getItem(key);
@@ -62,7 +95,7 @@
   }
   seedConnected();
 
-  // Welcome messages depending on room type
+  // Seed welcome messages
   function seedMessages(){
     const welcome = [
       {a:'Alice', t:'Salut à tous 😄'},
@@ -72,7 +105,7 @@
     welcome.forEach(m=> addMessage(m.a, m.t));
   }
 
-  // Typing indicator (self-only demo)
+  // Typing indicator (self demo)
   let typingTimer;
   input.addEventListener('input', ()=>{
     typingState.textContent = `${pseudo} est en train d'écrire…`;
@@ -80,7 +113,7 @@
     typingTimer = setTimeout(()=> typingState.textContent = '', 1200);
   });
 
-  // Strong forbidden filters
+  // Forbidden filters
   const forbidden = new RegExp([
     '(?:https?:\\/\\/|www\\.|\\.(?:fr|com|net|io)\\b)',
     '(?:t\\.me|wa\\.me|instagram|snap|onlyfans|facebook|x\\.com|@)',
@@ -114,7 +147,7 @@
       return;
     }
     if(forbidden.test(text)){
-      alert('Message bloqué (mot/lien interdit). Règles : pas de liens, pas d'argent, pas de prostitution.');
+      alert('Message bloqué (mot/lien interdit). Règles : pas de liens, pas de'argent, pas de prostitution.');
       return;
     }
     lastSent = now;
