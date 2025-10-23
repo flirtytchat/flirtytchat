@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlirtyTchat — Salon</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .chat-wrap{display:grid;grid-template-columns:1fr 260px;gap:16px;margin-top:16px}
+    .chat-box{background:#14141a;border:1px solid #23232c;border-radius:12px;display:flex;flex-direction:column;height:70vh}
+    .chat-messages{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+    .msg{background:#0e0e13;border:1px solid #262631;border-radius:10px;padding:10px 12px;max-width:85%}
+    .msg.me{margin-left:auto;border-color:#3a3a48}
+    .chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid #22232b}
+    .chat-input input{flex:1}
+    .side{background:#14141a;border:1px solid #23232c;border-radius:12px;padding:12px;height:70vh;overflow:auto}
+    .side h3{margin-top:0}
+    .user{padding:8px 10px;border:1px solid #262631;border-radius:8px;margin-bottom:8px}
+    .room-head{display:flex;align-items:center;justify-content:space-between}
+    .pill{border:1px solid #262631;border-radius:999px;padding:6px 10px;font-size:12px;color:#cfd0d8}
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo"><span class="logo-heart">❤</span><span class="logo-text">Flirty<span>Tchat</span><sup>.fr</sup></span></div>
+    <nav class="top-nav">
+      <a href="index.html">Accueil</a>
+      <a href="salon.html">Salon</a>
+      <a href="#regles" onclick="alert('Rappels: 18+, pas de liens, pas d\'argent, respect.')">Règles</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="room-head" style="margin-top:16px">
+    <h1 style="margin:0">Salon — Île-de-France</h1>
+    <span class="pill">Public • 18+</span>
+  </div>
+
+  <div class="chat-wrap">
+    <section class="chat-box" aria-live="polite">
+      <div id="messages" class="chat-messages">
+        <div class="msg"><strong>Alice:</strong> Salut tout le monde 😄</div>
+        <div class="msg me"><strong>Moi:</strong> Hello !</div>
+      </div>
+      <form id="chatForm" class="chat-input" onsubmit="return false;">
+        <input id="chatInput" type="text" placeholder="Écris ton message…" minlength="1" maxlength="500" />
+        <button id="sendBtn" type="submit">Envoyer</button>
+      </form>
+    </section>
+
+    <aside class="side">
+      <h3>Connectés</h3>
+      <div class="user">Alice • 24 • Paris</div>
+      <div class="user">Max • 28 • 92</div>
+      <div class="user">Moi • 22 • 03</div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="index.html#regles">Règles</a>
+      <a href="mailto:support@flirtytchat.fr">Contact</a>
+    </div>
+    <p class="copyright">© 2025 FlirtyTchat.fr</p>
+  </div>
+</footer>
+
+<script src="chat.js"></script>
+</body>
+</html>
