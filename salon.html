@@ -20,10 +20,12 @@
     .side{background:#14141a;border:1px solid #23232c;border-radius:12px;padding:12px;height:72vh;overflow:auto}
     .side h3{margin-top:0}
     .user{padding:8px 10px;border:1px solid #262631;border-radius:8px;margin-bottom:8px}
-    .room-head{display:flex;align-items:center;justify-content:space-between;margin-top:16px}
+    .room-head{display:flex;align-items:center;justify-content:space-between;margin-top:16px;gap:8px;flex-wrap:wrap}
     .pill{border:1px solid #262631;border-radius:999px;padding:6px 10px;font-size:12px;color:#cfd0d8}
     .counter{font-weight:700;color:#ff6ea8}
     .btn{background:#ff6ea8;border:none;border-radius:10px;padding:10px 12px;font-weight:800;color:#0b0b0f;cursor:pointer}
+    .crumbs{font-size:13px;color:#cfd0d8}
+    .crumbs a{color:#ff6ea8;text-decoration:none}
   </style>
 </head>
 <body>
@@ -37,7 +39,7 @@
     </div>
     <nav class="top-nav">
       <a href="index.html">Accueil</a>
-      <a href="#!" onclick="alert('Rappels : 18+, pas de liens, pas d\'argent, respect.');">Règles</a>
+      <a href="rooms.html">Salons</a>
       <a href="cgu.html">CGU</a>
       <a href="confidentialite.html">Confidentialité</a>
     </nav>
@@ -45,17 +47,15 @@
 </header>
 
 <main class="container">
+  <p class="crumbs">👉 <a href="rooms.html">Retour aux salons</a></p>
   <div class="room-head">
-    <h1 style="margin:0">Salon — Île-de-France <span class="meta" id="meTag"></span></h1>
+    <h1 style="margin:0" id="roomTitle">Salon</h1>
     <div class="pill">Connectés : <span class="counter" id="connectedCount">—</span></div>
   </div>
 
   <div class="chat-wrap">
     <section class="chat-box" aria-live="polite">
-      <div id="messages" class="chat-messages">
-        <div class="msg"><strong>Alice</strong> <span class="meta">• 15:20</span><br>Salut tout le monde 😄</div>
-        <div class="msg"><strong>Max</strong> <span class="meta">• 15:21</span><br>Bienvenue sur FlirtyTchat !</div>
-      </div>
+      <div id="messages" class="chat-messages"></div>
       <div class="typing" id="typingState"></div>
       <form id="chatForm" class="chat-input" onsubmit="return false;">
         <input id="chatInput" type="text" placeholder="Écris ton message…" minlength="1" maxlength="400" autocomplete="off" />
@@ -65,10 +65,7 @@
 
     <aside class="side">
       <h3>Connectés</h3>
-      <div id="usersList">
-        <div class="user">Alice • 24 • Paris</div>
-        <div class="user">Max • 28 • 92</div>
-      </div>
+      <div id="usersList"></div>
     </aside>
   </div>
 </main>

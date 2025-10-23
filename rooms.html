@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlirtyTchat — Salons</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .wrap{padding:24px 0}
+    .sections{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .card{background:#14141a;border:1px solid #23232c;border-radius:12px;padding:16px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+    .grid a{display:block;padding:10px 12px;border:1px solid #262631;border-radius:10px;color:#fff;text-decoration:none}
+    .grid a:hover{border-color:#ff6ea8}
+    @media(max-width:720px){.sections{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo" aria-label="FlirtyTchat.fr">
+      <a href="index.html">
+        <img src="logo-flirtytchat-mark.svg" alt="" width="28" height="28">
+        <img src="logo-flirtytchat-horizontal.svg" alt="FlirtyTchat.fr" height="36">
+      </a>
+    </div>
+    <nav class="top-nav">
+      <a href="index.html">Accueil</a>
+      <a href="cgu.html">CGU</a>
+      <a href="confidentialite.html">Confidentialité</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container wrap">
+  <h1>Choisis un salon</h1>
+  <div class="sections">
+    <section class="card">
+      <h2>Par région</h2>
+      <div class="grid">
+        <a href="salon.html?room=IDF">Île‑de‑France</a>
+        <a href="salon.html?room=ARA">Auvergne‑Rhône‑Alpes</a>
+        <a href="salon.html?room=PACA">Provence‑Alpes‑Côte d’Azur</a>
+        <a href="salon.html?room=OCC">Occitanie</a>
+        <a href="salon.html?room=NAQ">Nouvelle‑Aquitaine</a>
+        <a href="salon.html?room=GES">Grand Est</a>
+        <a href="salon.html?room=HDF">Hauts‑de‑France</a>
+        <a href="salon.html?room=NOR">Normandie</a>
+        <a href="salon.html?room=BRE">Bretagne</a>
+        <a href="salon.html?room=BFC">Bourgogne‑Franche‑Comté</a>
+        <a href="salon.html?room=CVL">Centre‑Val de Loire</a>
+        <a href="salon.html?room=PDL">Pays de la Loire</a>
+        <a href="salon.html?room=COR">Corse</a>
+        <a href="salon.html?room=OM">Outre‑mer</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Par thème</h2>
+      <div class="grid">
+        <a href="salon.html?room=COQ">Rencontre coquine soft</a>
+        <a href="salon.html?room=CAM">Cam 18+</a>
+        <a href="salon.html?room=DET">Détente & discussion</a>
+        <a href="salon.html?room=IRL">Rencontre réelle (IRL)</a>
+        <a href="salon.html?room=NEW">Nouveaux arrivants</a>
+        <a href="salon.html?room=NIGHT">Nuit chaude 🌙</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="mentions.html">Mentions</a>
+      <a href="cgu.html">CGU</a>
+      <a href="confidentialite.html">Confidentialité</a>
+      <a href="mailto:support@flirtytchat.fr">Contact</a>
+    </div>
+    <p class="copyright">© 2025 FlirtyTchat.fr</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,13 +1,33 @@
-// FlirtyTchat — Demo client-only chat logic
+// FlirtyTchat — Demo client-only chat with multi-room support
 (function(){
   const $ = (sel)=>document.querySelector(sel);
   const messages = $('#messages');
   const input = $('#chatInput');
   const form = $('#chatForm');
   const typingState = $('#typingState');
-  const meTag = $('#meTag');
   const usersList = $('#usersList');
   const connectedCount = $('#connectedCount');
+  const roomTitle = $('#roomTitle');
+
+  // ---- Rooms mapping
+  const ROOMS = {
+    // Regions
+    IDF: 'Île‑de‑France', ARA: 'Auvergne‑Rhône‑Alpes', PACA: 'Provence‑Alpes‑Côte d’Azur',
+    OCC: 'Occitanie', NAQ: 'Nouvelle‑Aquitaine', GES: 'Grand Est', HDF: 'Hauts‑de‑France',
+    NOR: 'Normandie', BRE: 'Bretagne', BFC: 'Bourgogne‑Franche‑Comté', CVL: 'Centre‑Val de Loire',
+    PDL: 'Pays de la Loire', COR: 'Corse', OM: 'Outre‑mer',
+    // Themes
+    COQ: 'Rencontre coquine soft', CAM: 'Cam 18+', DET: 'Détente & discussion',
+    IRL: 'Rencontre réelle (IRL)', NEW: 'Nouveaux arrivants', NIGHT: 'Nuit chaude 🌙'
+  };
+
+  function getParam(name){
+    const u = new URL(location.href);
+    return u.searchParams.get(name);
+  }
+  const roomCode = (getParam('room')||'IDF').toUpperCase();
+  const roomName = ROOMS[roomCode] || 'Salon public';
+  roomTitle.textContent = 'Salon — ' + roomName;
 
   // -------- Utilities
   const nowTime = ()=> {
@@ -17,7 +37,7 @@
     return h + ':' + m;
   };
 
-  // Generate or read pseudo from localStorage
+  // Generate or read pseudo from localStorage (scoped per origin)
   function getPseudo(){
     const key = 'ft_pseudo';
     let p = localStorage.getItem(key);
@@ -29,21 +49,30 @@
     return p;
   }
   const pseudo = getPseudo();
-  meTag.textContent = `(tu es connecté en tant que ${pseudo})`;
 
-  // Seed "connected" count and list
+  // Seed connected count and a small list
   function seedConnected(){
-    const base = 7 + Math.floor(Math.random()*6); // 7-12
+    const base = 8 + Math.floor(Math.random()*7); // 8-14
     connectedCount.textContent = base;
-    // Add "me" entry
-    const meDiv = document.createElement('div');
-    meDiv.className = 'user';
-    meDiv.textContent = `${pseudo} • 22 • 03`;
-    usersList.appendChild(meDiv);
+    const people = [
+      'Alice • 24 • Paris', 'Max • 28 • 92', 'Léa • 26 • 69', 'Noah • 23 • 13'
+    ];
+    usersList.innerHTML = people.slice(0,3).map(p=>`<div class="user">${p}</div>`).join('')
+      + `<div class="user">${pseudo} • 22 • 03</div>`;
   }
   seedConnected();
 
-  // Typing indicator (simulated other user)
+  // Welcome messages depending on room type
+  function seedMessages(){
+    const welcome = [
+      {a:'Alice', t:'Salut à tous 😄'},
+      {a:'Max', t:`Bienvenue dans ${roomName} !`},
+      {a:'Système', t:'Rappel : 18+, pas de liens, pas d'argent.'}
+    ];
+    welcome.forEach(m=> addMessage(m.a, m.t));
+  }
+
+  // Typing indicator (self-only demo)
   let typingTimer;
   input.addEventListener('input', ()=>{
     typingState.textContent = `${pseudo} est en train d'écrire…`;
@@ -51,7 +80,7 @@
     typingTimer = setTimeout(()=> typingState.textContent = '', 1200);
   });
 
-  // Stronger forbidden filters
+  // Strong forbidden filters
   const forbidden = new RegExp([
     '(?:https?:\\/\\/|www\\.|\\.(?:fr|com|net|io)\\b)',
     '(?:t\\.me|wa\\.me|instagram|snap|onlyfans|facebook|x\\.com|@)',
@@ -74,19 +103,16 @@
     return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
   }
 
-  // Welcome line for me
-  setTimeout(()=> addMessage('Système', `Bienvenue ${pseudo} ! Rappel : 18+, pas de liens, pas d'argent.`), 800);
+  seedMessages();
 
   form.addEventListener('submit', ()=>{
     const text = input.value.trim();
     if(!text) return;
-    // rate limit
     const now = Date.now();
     if(now - lastSent < 3000){
       alert('Trop rapide ! Merci d'attendre 3 secondes entre deux messages.');
       return;
     }
-    // filter
     if(forbidden.test(text)){
       alert('Message bloqué (mot/lien interdit). Règles : pas de liens, pas d'argent, pas de prostitution.');
       return;
@@ -94,7 +120,5 @@
     lastSent = now;
     addMessage(pseudo, text, true);
     input.value='';
-    // Simulate reply from Alice
-    setTimeout(()=> addMessage('Alice', '😉'), 1000);
   });
 })();
